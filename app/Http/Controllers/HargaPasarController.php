@@ -78,8 +78,7 @@ class HargaPasarController extends Controller
             'pisang' => 'required',
             'jeruk_lokal' => 'required',
             'ketela_pohon' => 'required',
-            'bawang_bombay' => 'required',
-
+            'bawang_bombay' => 'required'
         ]);
 
 
