@@ -1,63 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Harga Pasar</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SI-TUGA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Favicons -->
-    <link href="/assets/img/favicon.png" rel="icon">
-    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/assets/img/brebes.png" rel="icon">
+    <link href="/assets/img/brebes.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-
-    {{-- icone bootstrap --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
-    <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Nov 17 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    {{-- By: Eri Hidayat --}}
 </head>
 
 <body>
 
-    @include('sweetalert::alert')
     @include('layouts.header')
 
-    @include('layouts.sidebar')
-    <main id="main" class="main">
+    @yield('container')
 
-        <section>
-            @yield('container')
-        </section>
-
-    </main><!-- End #main -->
     @include('layouts.footer')
 
+
+    <script>
+        function formKirim(element, display) {
+            element.style.display = display;
+            document.getElementById("button-kirim").style.display = ""
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typingText = document.getElementById('typing-text');
+            const text = 'SI-TUGA';
+            let currentIndex = 0;
+
+            // Fungsi untuk menambahkan karakter baru
+            function animateTyping() {
+                if (currentIndex < text.length) {
+                    typingText.textContent += text[currentIndex];
+                    currentIndex++;
+                    setTimeout(animateTyping, 100); // Memanggil kembali fungsi setelah jeda 100ms
+                }
+            }
+
+            // Memulai animasi
+            animateTyping();
+        });
+    </script>
+
+    <script>
+        // Saat halaman dimuat kembali
+        window.onload = function() {
+            // Periksa apakah terdapat nilai di local storage untuk posisi scroll
+            var scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                // Pindahkan posisi scroll ke nilai yang disimpan di local storage
+                window.scrollTo(0, scrollPosition);
+                // Hapus nilai dari local storage setelah menggunakannya
+                localStorage.removeItem('scrollPosition');
+            }
+        };
+
+        // Saat halaman ditinggalkan atau di-reload
+        window.onbeforeunload = function() {
+            // Simpan posisi scroll saat ini di local storage
+            localStorage.setItem('scrollPosition', window.scrollY);
+        };
+    </script>
 
 </body>
 

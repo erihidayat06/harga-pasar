@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('admin.layouts.main')
 
 @section('container')
     <section class="section dashboard">
@@ -100,8 +100,8 @@
                                         <th scope="row">{{ $i++ }}</th>
                                         <td>{{ date('d_F_Y', strtotime($harga->created_at)) }}</td>
                                         <td>{{ $harga->lokasi }}</td>
-                                        <td>{{ $harga->harga_beras_premium }}</td>
-                                        <td>{{ $harga->harga_beras_medium }}</td>
+                                        <td>{{ $harga->beras_premium }}</td>
+                                        <td>{{ $harga->beras_medium }}</td>
                                         <td>{{ $harga->gula_pasir }}</td>
                                         <td>{{ $harga->minyak_grg_cur }}</td>
                                         <td>{{ $harga->minyak_goreng_bimoli }}</td>

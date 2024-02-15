@@ -1,110 +1,261 @@
- <table>
-     <thead>
-         <tr>
-             <th>#</th>
-             <th>Tanggal
-             </th>
-             <th>lokasi</th>
-             <th>harga beras premium</th>
-             <th>harga beras medium</th>
-             <th>gula pasir</th>
-             <th>minyak grg cur</th>
-             <th>minyak goreng bimoli</th>
-             <th>daging sapi murni</th>
-             <th>daging sapi kw</th>
-             <th>daging ayam ras</th>
-             <th>daging ayam kampung</th>
-             <th>telur ayam ras</th>
-             <th>telur ayam kampung</th>
-             <th>susu bubuk indomilk</th>
-             <th>susu bubuk dancow</th>
-             <th>skm bendera</th>
-             <th>skm indomilk</th>
-             <th>jagung pipilan</th>
-             <th>terigu bogasari</th>
-             <th>kedelai lokal</th>
-             <th>kedelai impor</th>
-             <th>cabai merah besar</th>
-             <th>cabai merah keriting</th>
-             <th>cabai rawit merah</th>
-             <th>cabai rawit hijau</th>
-             <th>bawang merah</th>
-             <th>bawang putih</th>
-             <th>bawang kating</th>
-             <th>ikan kembung</th>
-             <th>ikan teri</th>
-             <th>ikan bandeng</th>
-             <th>garam bata</th>
-             <th>garam halus</th>
-             <th>kacang tanah</th>
-             <th>kacang hijau</th>
-             <th>minyak kita</th>
-             <th>ikan tongkol</th>
-             <th>tempe</th>
-             <th>tahu mentah putih</th>
-             <th>udang segar</th>
-             <th>pisang</th>
-             <th>jeruk lokal</th>
-             <th>ketela pohon</th>
-             <th>bawang bombay</th>
+<div class="container mt-5 text-center position-relative mb-5">
+    {{-- Card Pencarian --}}
+    <form action="/" method="POST" role="search">
+        @csrf
+        <div class="card mt-5 shadow rounded-5" style="width: 95%">
+            <div class="card-body">
+                <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 
 
-         </tr>
-     </thead>
-     <tbody>
-         @php
-             $i = 1;
-         @endphp
-         @foreach ($hargas as $harga)
-             <tr>
-                 <th scope="row">{{ $i++ }}</th>
-                 <td>{{ date('d F Y', strtotime($harga->created_at)) }}</td>
-                 <td>{{ $harga->lokasi }}</td>
-                 <td>{{ $harga->harga_beras_premium }}</td>
-                 <td>{{ $harga->harga_beras_medium }}</td>
-                 <td>{{ $harga->gula_pasir }}</td>
-                 <td>{{ $harga->minyak_grg_cur }}</td>
-                 <td>{{ $harga->minyak_goreng_bimoli }}</td>
-                 <td>{{ $harga->daging_sapi_murni }}</td>
-                 <td>{{ $harga->daging_sapi_kw }}</td>
-                 <td>{{ $harga->daging_ayam_ras }}</td>
-                 <td>{{ $harga->daging_ayam_kampung }}</td>
-                 <td>{{ $harga->telur_ayam_ras }}</td>
-                 <td>{{ $harga->telur_ayam_kampung }}</td>
-                 <td>{{ $harga->susu_bubuk_indomilk }}</td>
-                 <td>{{ $harga->susu_bubuk_dancow }}</td>
-                 <td>{{ $harga->skm_bendera }}</td>
-                 <td>{{ $harga->skm_indomilk }}</td>
-                 <td>{{ $harga->jagung_pipilan }}</td>
-                 <td>{{ $harga->terigu_bogasari }}</td>
-                 <td>{{ $harga->kedelai_lokal }}</td>
-                 <td>{{ $harga->kedelai_impor }}</td>
-                 <td>{{ $harga->cabai_merah_besar }}</td>
-                 <td>{{ $harga->cabai_merah_keriting }}</td>
-                 <td>{{ $harga->cabai_rawit_merah }}</td>
-                 <td>{{ $harga->cabai_rawit_hijau }}</td>
-                 <td>{{ $harga->bawang_merah }}</td>
-                 <td>{{ $harga->bawang_putih }}</td>
-                 <td>{{ $harga->bawang_kating }}</td>
-                 <td>{{ $harga->ikan_kembung }}</td>
-                 <td>{{ $harga->ikan_teri }}</td>
-                 <td>{{ $harga->ikan_bandeng }}</td>
-                 <td>{{ $harga->garam_bata }}</td>
-                 <td>{{ $harga->garam_halus }}</td>
-                 <td>{{ $harga->kacang_tanah }}</td>
-                 <td>{{ $harga->kacang_hijau }}</td>
-                 <td>{{ $harga->minyak_kita }}</td>
-                 <td>{{ $harga->ikan_tongkol }}</td>
-                 <td>{{ $harga->tempe }}</td>
-                 <td>{{ $harga->tahu_mentah_putih }}</td>
-                 <td>{{ $harga->udang_segar }}</td>
-                 <td>{{ $harga->pisang }}</td>
-                 <td>{{ $harga->jeruk_lokal }}</td>
-                 <td>{{ $harga->ketela_pohon }}</td>
-                 <td>{{ $harga->bawang_bombay }}</td>
+                    <div class="col-lg-3">
+                        <select class="form-select form-select-sm text-dark custom-dropdown "
+                            aria-label="Small select example" name="produk">
+
+                            @if (request('produk') != null)
+                                <option value="{{ request('produk') }}">
+                                    {{ ucwords(str_replace('_', ' ', request('produk'))) }}</option>
+                                @for ($i = 0; $i < count($produks['produk']); $i++)
+                                    @if ($produks['barang'][$i] != request('produk'))
+                                        <option value="{{ $produks['barang'][$i] }}">{{ $produks['produk'][$i] }}
+                                        </option>
+                                    @endif
+                                @endfor
+                            @else
+                                @for ($i = 0; $i < count($produks['produk']); $i++)
+                                    <option value="{{ $produks['barang'][$i] }}">{{ $produks['produk'][$i] }}</option>
+                                @endfor
+                            @endif
 
 
-             </tr>
-         @endforeach
-     </tbody>
- </table>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="date"
+                            value="{{ request('dari') == null ? date('Y-m-d', strtotime('-1 month')) : date('Y-m-d', strtotime(request('dari'))) }}"
+                            class="text-dark custom-date-input" name="dari">
+                    </div>
+
+
+                    <div class="col-lg-3">
+                        <input type="date"
+                            value="{{ request('sampai') == null ? date('Y-m-d', strtotime('+7 day', strtotime(date('Y-m-d')))) : date('Y-m-d', strtotime(request('sampai'))) }}"
+                            class="text-dark custom-date-input" name="sampai">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {{-- Card Pencarian --}}
+
+        {{-- Tombol Bulat --}}
+        <button type="submit" onclick="formKirim(this,'none')"
+            class="btn btn-primary btn-circle shadow position-absolute top-50 end-0 translate-middle-y"><i
+                class="bi bi-search"></i></button>
+        {{-- Tombol Bulat --}}
+        {{-- Tombol Bulat --}}
+        <button type="submit" id="button-kirim" style="display:none"
+            class="btn btn-primary btn-circle shadow position-absolute top-50 end-0 translate-middle-y">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </button>
+        {{-- Tombol Bulat --}}
+    </form>
+</div>
+
+
+
+<div class="container">
+    <h1 class="fw-bold">
+        Data Harga
+        {{ request('produk') == null ? 'Beras Premium' : ucwords(str_replace('_', ' ', request('produk'))) }}
+    </h1>
+
+    <p>Perubahan Harga tanggal
+        @if (!request('dari'))
+            {{ date('d F Y', strtotime('-1 month')) }}
+        @else
+            {{ date('d F Y', strtotime(request('dari'))) }}
+        @endif
+
+        -
+        @if (!request('dari'))
+            {{ date('d F Y', strtotime('+7 day', strtotime(date('Y-m-d')))) }}
+        @else
+            {{ date('d F Y', strtotime(request('sampai'))) }}
+        @endif
+
+    </p>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col ">
+            <div class="card h-100 text-center rounded-4">
+                <h5 class="fw-bold">Kenaikan Harga</h5>
+                <h4>Minggu ini</h4>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Awal</th>
+                        <th>Sekarang</th>
+                    </tr>
+                    <tr>
+                        <td>Rp {{ number_format($kenaikan_minggu1['awal'], '0', '', '.') }}</td>
+                        <td>Rp {{ number_format($kenaikan_minggu1['akhir'], '0', '', '.') }}</td>
+                    </tr>
+                </table>
+                <div class="card-body bg-card1">
+
+                    <h3 class="card-title text-white fw-bold"><span>
+                            @if ($kenaikan_minggu1['naik'] > 0)
+                                <i class="bi bi-caret-up-square fs-5 p-2"></i>
+                            @elseif ($kenaikan_minggu1['naik'] < 0)
+                                <i class="bi bi-caret-down-square fs-5 p-2"></i>
+                            @else
+                                <i class="bi bi-align-center fs-5 p-2"></i>
+                            @endif
+                        </span>Rp
+                        {{ number_format($kenaikan_minggu1['naik'], '0', '', '.') }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card h-100 text-center rounded-4">
+                <h5 class="fw-bold">Kenaikan Harga</h5>
+                <h4>Bulan ini</h4>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Awal</th>
+                        <th>Sekarang</th>
+                    </tr>
+                    <tr>
+                        <td>Rp {{ number_format($kenaikan_bulan1['awal'], '0', '', '.') }}</td>
+                        <td>Rp {{ number_format($kenaikan_bulan1['akhir'], '0', '', '.') }}</td>
+                    </tr>
+                </table>
+                <div class="card-body bg-card2">
+                    <h3 class="card-title text-white fw-bold"><span>
+                            @if ($kenaikan_bulan1['naik'] > 0)
+                                <i class="bi bi-caret-up-square fs-5 p-2"></i>
+                            @elseif ($kenaikan_bulan1['naik'] < 0)
+                                <i class="bi bi-caret-down-square fs-5 p-2"></i>
+                            @else
+                                <i class="bi bi-align-center fs-5 p-2"></i>
+                            @endif
+                        </span>Rp {{ number_format($kenaikan_bulan1['naik'], '0', '', '.') }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col ">
+            <div class="card h-100 text-center rounded-4">
+                <h5 class="fw-bold">Kenaikan Harga</h5>
+                <h4>Tahun ini</h4>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Awal</th>
+                        <th>Sekarang</th>
+                    </tr>
+                    <tr>
+                        <td>Rp {{ number_format($kenaikan_tahun1['awal'], '0', '', '.') }}</td>
+                        <td>Rp {{ number_format($kenaikan_tahun1['akhir'], '0', '', '.') }}</td>
+                    </tr>
+                </table>
+                <div class="card-body bg-card3">
+                    <h3 class="card-title text-white fw-bold"><span>
+                            @if ($kenaikan_tahun1['naik'] > 0)
+                                <i class="bi bi-caret-up-square fs-5 p-2"></i>
+                            @elseif ($kenaikan_tahun1['naik'] < 0)
+                                <i class="bi bi-caret-down-square fs-5 p-2"></i>
+                            @else
+                                <i class="bi bi-align-center fs-5 p-2"></i>
+                            @endif
+                        </span>Rp {{ number_format($kenaikan_tahun1['naik'], '0', '', '.') }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Grafik Harga Tanggal
+                @if (!request('dari'))
+                    {{ date('d F Y', strtotime('-1 month')) }}
+                @else
+                    {{ date('d F Y', strtotime(request('dari'))) }}
+                @endif
+
+                -
+                @if (!request('dari'))
+                    {{ date('d F Y', strtotime('+7 day', strtotime(date('Y-m-d')))) }}
+                @else
+                    {{ date('d F Y', strtotime(request('sampai'))) }}
+                @endif
+            </h5>
+
+            <!-- Area Chart -->
+            <div id="grafik-all"></div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const series = {
+                        "monthDataSeries1": {
+                            "prices": {{ $harga1 }},
+                            "dates": <?php echo $tanggal1; ?>
+                        },
+
+                    }
+                    new ApexCharts(document.querySelector("#grafik-all"), {
+                        series: [{
+                            name: "Harga Produk",
+                            data: series.monthDataSeries1.prices
+                        }],
+                        chart: {
+                            type: 'area',
+                            height: 350,
+                            zoom: {
+                                enabled: false
+                            }
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        stroke: {
+                            curve: 'straight'
+                        },
+                        subtitle: {
+                            text: 'Price Movements',
+                            align: 'left'
+                        },
+                        labels: series.monthDataSeries1.dates,
+                        xaxis: {
+                            type: 'datetime',
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function(value) {
+                                    return 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                }
+                            },
+                            opposite: true
+                        },
+                        legend: {
+                            horizontalAlign: 'left'
+                        }
+                    }).render();
+                });
+            </script>
+            <!-- End Area Chart -->
+
+        </div>
+    </div>
+</div>

@@ -1,59 +1,24 @@
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+<nav class="navbar navbar-expand-lg  bg-primary" data-bs-theme="dark">
+    <div class="container">
 
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-            <span class="d-none d-lg-block">Harga Pasar</span>
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="/assets/img/brebes.png" alt="Logo" style="margin-right: 10px" width="40"
+                class="d-inline-block align-text-top">
+            TPID KABUPATEN BREBES
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
 
-
-
-    <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-
-            {{-- <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon--> --}}
-
-            @auth
-
-                <li class="nav-item dropdown pe-3">
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
-                    </a><!-- End Profile Iamge Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
-                        <li>
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>Sign Out</span></button>
-                            </form>
-
-                        </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-            @else
-                <li class="nav-item pe-3">
-                    <a class="nav-link nav-icon search-bar-toggle " href="/login">
-                        Login <i class="bi bi-box-arrow-in-right"></i>
-                    </a>
-
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/tampil-data">Tampilkan Data</a>
                 </li>
-            @endauth
 
 
-
-
-
-        </ul>
-    </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->
+            </ul>
+        </div>
+    </div>
+</nav>

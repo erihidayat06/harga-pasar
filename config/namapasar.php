@@ -1,0 +1,13 @@
+<?php
+
+return ['pasar' => [
+    'PASAR WINDUAJI',
+    'KETANGGUNGAN',
+    'PASAR INDUK BREBES',
+    'BULAKAMBA',
+    'JATIBARANG',
+    'PASAR BUMIAYU',
+    'PASAR SENG MAKMUR BUMIAYU',
+    'PASAR BELAKANG KODIM',
+    'KERSANA'
+]];

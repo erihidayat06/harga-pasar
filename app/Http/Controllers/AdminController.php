@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin', [
+        return view('admin.admin', [
             'hargas' => Hargabarang::filterTanggal(request(['dari']))->latest()->get()
         ]);
     }

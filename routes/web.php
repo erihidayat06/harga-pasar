@@ -17,10 +17,14 @@ use App\Http\Controllers\HargaPasarController;
 */
 
 
+Route::get('/tambah-data', [HargaPasarController::class, 'create']);
+Route::post('/tambah-data', [HargaPasarController::class, 'store']);
 Route::resource('/', HargaPasarController::class);
+Route::post('/', [HargaPasarController::class, 'index']);
+Route::get('/tampil-data', [HargaPasarController::class, 'tampilData']);
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
-Route::get('/admin/excel', [AdminController::class, 'laporanExcel'])->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/excel', [AdminController::class, 'laporanExcel']);
 
 Auth::routes();
 
