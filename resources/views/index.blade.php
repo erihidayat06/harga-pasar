@@ -18,8 +18,10 @@
 
     @include('harga')
 
+    <h1 class="fw-bold mt-5 text-center" id="masuk"> Harga Komoditi Setiap Pasar</h1>
     <div class="container mt-5 text-center position-relative mb-5">
         {{-- Card Pencarian --}}
+
         <form action="/" method="POST" role="search">
             @csrf
             <div class="card mt-5 shadow rounded-5" style="width: 95%">
@@ -86,6 +88,8 @@
 
             {{-- Card Pencarian --}}
 
+
+
             {{-- Tombol Bulat --}}
             <button type="submit" onclick="formKirim(this,'none')"
                 class="btn btn-primary btn-circle shadow position-absolute top-50 end-0 translate-middle-y"><i
@@ -101,6 +105,7 @@
             {{-- Tombol Bulat --}}
         </form>
     </div>
+
 
 
 

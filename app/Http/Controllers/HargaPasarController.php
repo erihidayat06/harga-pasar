@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\DataHarga;
-use App\Models\Hargabarang;
 
+use App\Exports\DataHarga;
+
+use App\Models\Hargabarang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class HargaPasarController extends Controller
 {
@@ -20,7 +22,7 @@ class HargaPasarController extends Controller
         // Harga Setiap Pasar
         $tanggal1 = [date('d M Y')];
         $harga1 = [0];
-        (request('produk') == null) ? $produk = 'beras_premium' : $produk = request('produk');
+        (request('produk1') == null) ? $produk = 'beras_premium' : $produk = request('produk1');
 
         // Perhitungan Perminggu
         $perhari1 = Hargabarang::tanggal(request(['dari', 'sampai']))->orderBy('created_at', 'asc')->get()->unique('created_at');
@@ -162,6 +164,11 @@ class HargaPasarController extends Controller
             'harga1' => json_encode($total1),
 
         ]);
+    }
+
+    public function cetak_pdf()
+    {
+        return view('exportPDF');
     }
 
     public function tampilData()

@@ -9,13 +9,13 @@
 
                     <div class="col-lg-3">
                         <select class="form-select form-select-sm text-dark custom-dropdown "
-                            aria-label="Small select example" name="produk">
+                            aria-label="Small select example" name="produk1">
 
-                            @if (request('produk') != null)
-                                <option value="{{ request('produk') }}">
-                                    {{ ucwords(str_replace('_', ' ', request('produk'))) }}</option>
+                            @if (request('produk1') != null)
+                                <option value="{{ request('produk1') }}">
+                                    {{ ucwords(str_replace('_', ' ', request('produk1'))) }}</option>
                                 @for ($i = 0; $i < count($produks['produk']); $i++)
-                                    @if ($produks['barang'][$i] != request('produk'))
+                                    @if ($produks['barang'][$i] != request('produk1'))
                                         <option value="{{ $produks['barang'][$i] }}">{{ $produks['produk'][$i] }}
                                         </option>
                                     @endif
@@ -69,7 +69,7 @@
 <div class="container">
     <h1 class="fw-bold">
         Data Harga
-        {{ request('produk') == null ? 'Beras Premium' : ucwords(str_replace('_', ' ', request('produk'))) }}
+        {{ request('produk1') == null ? 'Beras Premium' : ucwords(str_replace('_', ' ', request('produk1'))) }}
     </h1>
 
     <p>Perubahan Harga tanggal
@@ -89,7 +89,10 @@
     </p>
 </div>
 
+
+
 <div class="container mt-5 mb-5">
+    <a href="/harga/cetak_pdf" class="btn btn-sm btn-success m-4">Download</a>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col ">
             <div class="card h-100 text-center rounded-4">

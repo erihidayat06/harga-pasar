@@ -50,6 +50,11 @@ class Hargabarang extends Model
         $query->where('created_at', '>=', date('Y-m-d', strtotime('-14 day', strtotime(date('Y-m-d')))));
     }
 
+    public function scopeHariini($query)
+    {
+        $query->where('created_at', 'like', '%' . date('Y-m-d') . '%');
+    }
+
     public function scopeBulanlalu($query)
     {
         $query->where('created_at', 'like', '%' . date('Y-m', strtotime('-1 month')) . '%');

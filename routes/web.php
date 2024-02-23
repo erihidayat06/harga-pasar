@@ -26,6 +26,9 @@ Route::get('/tampil-data', [HargaPasarController::class, 'tampilData']);
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/excel', [AdminController::class, 'laporanExcel']);
 
+
+Route::get('/harga/cetak_pdf', [HargaPasarController::class, 'cetak_pdf']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
